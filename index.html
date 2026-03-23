@@ -322,11 +322,11 @@ function drawMomChart(data){
   const ctx=document.getElementById('momChart').getContext('2d');
   if(momChartInst)momChartInst.destroy();
   momChartInst=new Chart(ctx,{type:'bar',data:{labels:months.map(mLabel),datasets:[
-    {label:'New Activation',data:naData,backgroundColor:'#16A34A',stack:'s'},
-    {label:'Top-up',data:tuData,backgroundColor:'#457B9D',stack:'s'}
+    {label:'New Activation',data:naData,backgroundColor:'#27AE60',barPercentage:0.45,categoryPercentage:0.7},
+    {label:'Top-up',data:tuData,backgroundColor:'#1A3A8F',barPercentage:0.45,categoryPercentage:0.7}
   ]},options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{position:'top',labels:{font:{size:12}}},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>` ${c.dataset.label}: ₹${c.raw.toFixed(2)} Cr`}}},
-    scales:{y:{title:{display:true,text:'₹ Cr',color:'#64748B'},grid:{color:'#F1F5F9'},ticks:{callback:v=>'₹'+v.toFixed(1)}},x:{stacked:true,grid:{display:false}}}}});
+    scales:{y:{title:{display:true,text:'₹ Cr',color:'#64748B'},grid:{color:'#F1F5F9'},ticks:{callback:v=>'₹'+v.toFixed(1)}},x:{grid:{display:false}}}}});
 }
 
 // ── Scheme-wise MoM Chart ─────────────────────────────────────────
@@ -343,11 +343,11 @@ function drawSchemeMomChart(data){
   const ctx=document.getElementById('schMomChart').getContext('2d');
   if(schMomChartInst)schMomChartInst.destroy();
   schMomChartInst=new Chart(ctx,{type:'bar',data:{labels:months.map(mLabel),datasets:[
-    {label:'New Activation',data:naData,backgroundColor:'#16A34A',stack:'s'},
-    {label:'Top-up',data:tuData,backgroundColor:'#457B9D',stack:'s'}
+    {label:'New Activation',data:naData,backgroundColor:'#27AE60',barPercentage:0.45,categoryPercentage:0.7},
+    {label:'Top-up',data:tuData,backgroundColor:'#1A3A8F',barPercentage:0.45,categoryPercentage:0.7}
   ]},options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{position:'top',labels:{font:{size:12}}},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>` ${c.dataset.label}: ₹${c.raw.toFixed(2)} Cr`}}},
-    scales:{y:{title:{display:true,text:'₹ Cr',color:'#64748B'},grid:{color:'#F1F5F9'},ticks:{callback:v=>'₹'+v.toFixed(1)}},x:{stacked:true,grid:{display:false}}}}});
+    scales:{y:{title:{display:true,text:'₹ Cr',color:'#64748B'},grid:{color:'#F1F5F9'},ticks:{callback:v=>'₹'+v.toFixed(1)}},x:{grid:{display:false}}}}});
 }
 
 // ── Total Inflows Table ───────────────────────────────────────────
