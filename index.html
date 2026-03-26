@@ -467,7 +467,7 @@ function renderBreakdown(data,keyFn,bodyId,extraHdr){
     const allCnt=new Set(kd.filter(r=>nonST2(r.client_code)).map(r=>r.client_code)).size;
     const avgAum=allCnt>0?(na+tu)/allCnt:0;
     gAmt+=na+tu;gNA+=na;gTU+=tu;gAllCnt+=allCnt;gNACnt+=naCnt;gTUCnt+=tuCnt;
-    const isDirect=kd[0]&&kd[0].rm===kd[0].market_lead;
+    const isDirect=kd[0]&&kd[0].rm==='Direct';
     const extra=extraHdr?`<td>${isDirect?'<span style="color:var(--gold);font-weight:600">Direct</span>':kd[0]?.market_lead||''}</td>`:'';
     return`<tr><td class="b">${k}</td>${extra}
       <td class="r">${fmtN(allCnt)}</td><td class="r b">₹${fmt(na+tu)}</td>
@@ -495,8 +495,8 @@ function render(){
   drawSchemeMomChart(data);
   renderTotal(data);
   renderSchemes(data);
-  renderBreakdown(data,r=>r.rm===r.market_lead?'Direct':r.division,'cBody',false);
-  renderBreakdown(data,r=>r.rm===r.market_lead?'Direct':r.market_lead,'mlBody',false);
+  renderBreakdown(data,r=>r.rm==='Direct'?'Direct':r.division,'cBody',false);
+  renderBreakdown(data,r=>r.rm==='Direct'?'Direct':r.market_lead,'mlBody',false);
   renderBreakdown(data,r=>r.rm,'rmBody',true);
 }
 
