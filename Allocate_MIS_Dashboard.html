@@ -65,6 +65,9 @@
   .bar-pct{font-size:12px;color:var(--muted);min-width:40px;text-align:right;}
   .no-data{text-align:center;color:var(--muted);padding:40px;}
   @media(max-width:768px){.header,.filter-bar,.main{padding-left:16px;padding-right:16px;}}
+  .dl-btn{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;margin-left:10px;transition:.15s;}
+  .dl-btn:hover{background:rgba(212,175,55,.25);border-color:var(--gold);color:var(--gold);}
+  .sh-right{display:flex;align-items:center;gap:8px;}
 </style>
 </head>
 <body>
@@ -104,7 +107,6 @@
   </div>
   <button class="btn" onclick="render()">Apply</button>
   <button class="btn-ghost" onclick="reset()">Reset</button>
-  <button class="btn-ghost" onclick="exportCSV()" title="Download filtered records as CSV">Export CSV</button>
 </div>
 
 <div class="main">
@@ -142,7 +144,7 @@
 
   <!-- S2: Total Inflows -->
   <div class="section">
-    <div class="sh"><h2>💰 Section 2 — Total Inflows Summary</h2><span class="tag">MoM Breakdown</span></div>
+    <div class="sh"><h2>💰 Section 2 — Total Inflows Summary</h2><div class="sh-right"><span class="tag">MoM Breakdown</span><button class="dl-btn" onclick="exportTable('tBody','Section_2_Total_Inflows')" title="Download this table as CSV"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>CSV</span></button></div></div>
     <div class="sb">
       <table><thead><tr>
         <th>Month</th>
@@ -155,7 +157,7 @@
 
   <!-- S3: Scheme-wise -->
   <div class="section">
-    <div class="sh"><h2>📊 Section 3 — Scheme-wise Inflow Breakdown</h2><span class="tag">DPMS &amp; NDPMS</span></div>
+    <div class="sh"><h2>📊 Section 3 — Scheme-wise Inflow Breakdown</h2><div class="sh-right"><span class="tag">DPMS &amp; NDPMS</span><button class="dl-btn" onclick="exportTable('sBody','Section_3_Scheme_Breakdown')" title="Download this table as CSV"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>CSV</span></button></div></div>
     <div class="sb">
       <table><thead><tr>
         <th>Scheme</th><th>Type</th>
@@ -170,7 +172,7 @@
 
   <!-- S4: Category -->
   <div class="section">
-    <div class="sh"><h2>👥 Section 4 — Category Level (HNI vs UHNI)</h2><span class="tag">Client Segment</span></div>
+    <div class="sh"><h2>👥 Section 4 — Category Level (HNI vs UHNI)</h2><div class="sh-right"><span class="tag">Client Segment</span><button class="dl-btn" onclick="exportTable('cBody','Section_4_Category')" title="Download this table as CSV"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>CSV</span></button></div></div>
     <div class="sb">
       <table><thead><tr>
         <th>Category</th>
@@ -184,7 +186,7 @@
 
   <!-- S5: Market Lead -->
   <div class="section">
-    <div class="sh"><h2>🏢 Section 5 — Market Lead Level</h2><span class="tag">Team Performance</span></div>
+    <div class="sh"><h2>🏢 Section 5 — Market Lead Level</h2><div class="sh-right"><span class="tag">Team Performance</span><button class="dl-btn" onclick="exportTable('mlBody','Section_5_Market_Lead')" title="Download this table as CSV"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>CSV</span></button></div></div>
     <div class="sb">
       <table><thead><tr>
         <th>Market Lead</th>
@@ -198,7 +200,7 @@
 
   <!-- S6: RM -->
   <div class="section">
-    <div class="sh"><h2>👤 Section 6 — RM Level Tracking</h2><span class="tag">Individual Performance</span></div>
+    <div class="sh"><h2>👤 Section 6 — RM Level Tracking</h2><div class="sh-right"><span class="tag">Individual Performance</span><button class="dl-btn" onclick="exportTable('rmBody','Section_6_RM')" title="Download this table as CSV"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>CSV</span></button></div></div>
     <div class="sb">
       <table><thead><tr>
         <th>RM Name</th><th>Market Lead</th>
@@ -516,21 +518,35 @@ function onPreset(){
   document.getElementById('cTo').style.display  =v==='custom'?'flex':'none';
   if(v!=='custom')render();
 }
-function exportCSV(){
-  const data=filtered();
-  const cols=['month','scheme','trans_type','amount','rm','market_lead','division','client_code'];
+function exportTable(tbodyId, fname){
+  const tbody=document.getElementById(tbodyId);
+  if(!tbody){alert('Table not found'); return;}
+  const table=tbody.closest('table');
+  const rows=[];
+  // headers
+  const hdr=[];
+  table.querySelectorAll('thead th').forEach(th=>hdr.push(th.innerText.trim()));
+  rows.push(hdr);
+  // body rows - preserve exactly what user sees (including group headers / totals)
+  table.querySelectorAll('tbody tr').forEach(tr=>{
+    const cells=[];
+    tr.querySelectorAll('td').forEach(td=>{
+      // Use innerText so bar-pct / badge text stays, strip line breaks
+      let txt=td.innerText.replace(/\s+/g,' ').trim();
+      cells.push(txt);
+    });
+    if(cells.length) rows.push(cells);
+  });
   const esc=v=>{
-    if(v===null||v===undefined) return '';
-    const s=String(v);
-    return /[",\n]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s;
+    const s=(v===null||v===undefined)?'':String(v);
+    return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;
   };
-  const lines=[cols.join(',')];
-  data.forEach(r=>lines.push(cols.map(c=>esc(r[c])).join(',')));
-  const blob=new Blob(['\ufeff'+lines.join('\n')], {type:'text/csv;charset=utf-8;'});
+  const csv=rows.map(r=>r.map(esc).join(',')).join('\n');
+  const blob=new Blob(['\ufeff'+csv], {type:'text/csv;charset=utf-8;'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
   const ts=new Date().toISOString().slice(0,10);
-  a.href=url; a.download='allocate_inflow_'+ts+'.csv';
+  a.href=url; a.download=fname+'_'+ts+'.csv';
   document.body.appendChild(a); a.click();
   document.body.removeChild(a); URL.revokeObjectURL(url);
 }
