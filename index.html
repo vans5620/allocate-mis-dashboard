@@ -104,6 +104,7 @@
   </div>
   <button class="btn" onclick="render()">Apply</button>
   <button class="btn-ghost" onclick="reset()">Reset</button>
+  <button class="btn-ghost" onclick="exportCSV()" title="Download filtered records as CSV">Export CSV</button>
 </div>
 
 <div class="main">
@@ -515,6 +516,25 @@ function onPreset(){
   document.getElementById('cTo').style.display  =v==='custom'?'flex':'none';
   if(v!=='custom')render();
 }
+function exportCSV(){
+  const data=filtered();
+  const cols=['month','scheme','trans_type','amount','rm','market_lead','division','client_code'];
+  const esc=v=>{
+    if(v===null||v===undefined) return '';
+    const s=String(v);
+    return /[",\n]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s;
+  };
+  const lines=[cols.join(',')];
+  data.forEach(r=>lines.push(cols.map(c=>esc(r[c])).join(',')));
+  const blob=new Blob(['\ufeff'+lines.join('\n')], {type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const ts=new Date().toISOString().slice(0,10);
+  a.href=url; a.download='allocate_inflow_'+ts+'.csv';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
 function reset(){
   document.getElementById('preset').value='all';
   document.getElementById('schType').value='all';
